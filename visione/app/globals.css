@@ -3,11 +3,22 @@
 :root {
   --background: #0a0000;
   --foreground: #171717;
+
+  /* Marca — ver docs/Design System.md §2. Solo los valores documentados;
+     navy-700, ink-50 e ink-200 siguen sin valor en la guía. */
+  --navy-600: #292960;
+  --amber-400: #fbb800;
+  --ink-700: #3e4c59;
+  --ink-900: #1f2933;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-navy-600: var(--navy-600);
+  --color-amber-400: var(--amber-400);
+  --color-ink-700: var(--ink-700);
+  --color-ink-900: var(--ink-900);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
