@@ -1,37 +1,211 @@
 @import "tailwindcss";
 
-:root {
-  --background: #0a0000;
-  --foreground: #171717;
+/* ---------------------------------------------------------------------------
+   Tokens de marca — traducción del bundle `_ds/visione-design-system-*` del
+   prototipo `.dc.html` a las variables CSS de este proyecto. Ver
+   docs/Design System.md. Los valores crudos viven aquí; el bloque
+   `@theme inline` de más abajo es lo que convierte cada uno en una clase de
+   Tailwind (`bg-navy-600`, `text-md`, `rounded-sm`, `shadow-lg`…).
+--------------------------------------------------------------------------- */
 
-  /* Marca — ver docs/Design System.md §2. Solo los valores documentados;
-     navy-700, ink-50 e ink-200 siguen sin valor en la guía. */
-  --navy-600: #292960;
-  --amber-400: #fbb800;
-  --ink-700: #3e4c59;
-  --ink-900: #1f2933;
+:root {
+  color-scheme: light;
+
+  /* Color — cinco valores de marca fijos; el resto son tintes derivados.
+     #292960 navy · #FFFFFF blanco · #FBB800 ámbar · #3E4C59 pizarra · #1F2933 tinta */
+  --navy-50: #f2f2f8;
+  --navy-100: #e3e3f0;
+  --navy-200: #c3c3de;
+  --navy-300: #9a9ac6;
+  --navy-400: #6c6cab;
+  --navy-500: #46468d;
+  --navy-600: #292960; /* MARCA */
+  --navy-700: #22224f;
+  --navy-800: #1a1a3d;
+  --navy-900: #12122a;
+
+  --amber-50: #fff9e8;
+  --amber-100: #fff0c4;
+  --amber-200: #ffe293;
+  --amber-300: #ffd25c;
+  --amber-400: #fbb800; /* MARCA */
+  --amber-500: #e0a400;
+  --amber-600: #b98700;
+  --amber-700: #8a6500;
+
+  --ink-900: #1f2933; /* MARCA */
+  --ink-800: #2b3743;
+  --ink-700: #3e4c59; /* MARCA */
+  --ink-600: #52616f;
+  --ink-500: #6b7885;
+  --ink-400: #8d97a2;
+  --ink-300: #b3bcc4;
+  --ink-200: #d5dbe0;
+  --ink-100: #e8ecef;
+  --ink-50: #f4f6f8;
+  --white: #ffffff; /* MARCA */
+
+  --success-500: #1e7a5a;
+  --success-100: #dbf0e8;
+  --info-500: #2e5aac;
+  --info-100: #dde6f7;
+  --warning-500: #e0a400;
+  --warning-100: #fff0c4;
+  --danger-500: #b3352c;
+  --danger-100: #f8e0de;
+
+  --navy-a08: rgba(41, 41, 96, 0.08);
+  --navy-a16: rgba(41, 41, 96, 0.16);
+  --navy-a40: rgba(41, 41, 96, 0.4);
+  --navy-a72: rgba(41, 41, 96, 0.72);
+  --white-a12: rgba(255, 255, 255, 0.12);
+  --white-a24: rgba(255, 255, 255, 0.24);
+  --white-a72: rgba(255, 255, 255, 0.72);
+  --amber-a24: rgba(251, 184, 0, 0.24);
+
+  /* Alias semánticos — los usan las piezas que no pasan por una clase */
+  --background: var(--white);
+  --foreground: var(--ink-700);
+  --focus-ring: 0 0 0 3px var(--amber-a24), 0 0 0 1px var(--navy-600);
 }
 
 @theme inline {
+  /* Color */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-navy-600: var(--navy-600);
-  --color-amber-400: var(--amber-400);
-  --color-ink-700: var(--ink-700);
-  --color-ink-900: var(--ink-900);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-navy-50: var(--navy-50);
+  --color-navy-100: var(--navy-100);
+  --color-navy-200: var(--navy-200);
+  --color-navy-300: var(--navy-300);
+  --color-navy-400: var(--navy-400);
+  --color-navy-500: var(--navy-500);
+  --color-navy-600: var(--navy-600);
+  --color-navy-700: var(--navy-700);
+  --color-navy-800: var(--navy-800);
+  --color-navy-900: var(--navy-900);
+
+  --color-amber-50: var(--amber-50);
+  --color-amber-100: var(--amber-100);
+  --color-amber-200: var(--amber-200);
+  --color-amber-300: var(--amber-300);
+  --color-amber-400: var(--amber-400);
+  --color-amber-500: var(--amber-500);
+  --color-amber-600: var(--amber-600);
+  --color-amber-700: var(--amber-700);
+
+  --color-ink-50: var(--ink-50);
+  --color-ink-100: var(--ink-100);
+  --color-ink-200: var(--ink-200);
+  --color-ink-300: var(--ink-300);
+  --color-ink-400: var(--ink-400);
+  --color-ink-500: var(--ink-500);
+  --color-ink-600: var(--ink-600);
+  --color-ink-700: var(--ink-700);
+  --color-ink-800: var(--ink-800);
+  --color-ink-900: var(--ink-900);
+  --color-white: var(--white);
+
+  --color-success-500: var(--success-500);
+  --color-success-100: var(--success-100);
+  --color-info-500: var(--info-500);
+  --color-info-100: var(--info-100);
+  --color-warning-500: var(--warning-500);
+  --color-warning-100: var(--warning-100);
+  --color-danger-500: var(--danger-500);
+  --color-danger-100: var(--danger-100);
+
+  --color-white-a12: var(--white-a12);
+  --color-white-a24: var(--white-a24);
+  --color-white-a72: var(--white-a72);
+  --color-navy-a72: var(--navy-a72);
+
+  /* Tipografía — Barlow Condensed para display, Semi Condensed para UI y texto */
+  --font-display: var(--font-barlow-condensed), "Arial Narrow", system-ui,
+    sans-serif;
+  --font-ui: var(--font-barlow-semi-condensed), "Arial Narrow", system-ui,
+    sans-serif;
+  --font-body: var(--font-barlow-semi-condensed), "Arial Narrow", system-ui,
+    sans-serif;
+
+  /* Escala condensada: va un paso por encima de un sistema de ancho normal */
+  --text-3xs: 11px;
+  --text-2xs: 12px;
+  --text-xs: 13px;
+  --text-sm: 15px;
+  --text-md: 17px;
+  --text-lg: 19px;
+  --text-xl: 22px;
+  --text-2xl: 27px;
+  --text-3xl: 33px;
+  --text-4xl: 41px;
+  --text-5xl: 52px;
+  --text-6xl: 66px;
+  --text-7xl: 84px;
+
+  --leading-tight: 1;
+  --leading-snug: 1.12;
+  --leading-heading: 1.06;
+  --leading-normal: 1.45;
+  --leading-relaxed: 1.62;
+
+  --tracking-tight: -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.02em;
+  --tracking-caps: 0.09em;
+  --tracking-eyebrow: 0.16em;
+
+  /* Radios — la V de la marca son chevrones duros: el sistema queda casi recto */
+  --radius-none: 0px;
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-xl: 16px;
+  --radius-pill: 999px;
+
+  /* Sombras teñidas de navy, nunca gris neutro */
+  --shadow-xs: 0 1px 2px rgba(31, 41, 51, 0.06);
+  --shadow-sm: 0 2px 6px rgba(31, 41, 51, 0.08);
+  --shadow-md: 0 6px 18px rgba(41, 41, 96, 0.1);
+  --shadow-lg: 0 16px 40px rgba(41, 41, 96, 0.14);
+  --shadow-xl: 0 28px 68px rgba(18, 18, 42, 0.22);
+
+  /* Anchos de caja. Nombres propios en vez de sm/md/lg/xl: esos ya existen en
+     Tailwind con otros valores y redefinirlos haría que `max-w-lg` midiera
+     1180px sin que nadie lo espere. */
+  --container-tight: 720px;
+  --container-narrow: 960px;
+  --container-content: 1180px;
+  --container-rail: 1360px;
+
+  /* Movimiento institucional: fundidos cortos, sin rebotes */
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+
+  /* La navegación de escritorio del prototipo aparece a partir de 980px */
+  --breakpoint-nav: 980px;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  line-height: var(--leading-normal);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--amber-200);
+  color: var(--navy-800);
+}
+
+/* Riel del header: ancho fluido del prototipo, imposible de expresar con una
+   sola clase de Tailwind sin volverla ilegible. */
+.header-rail {
+  width: min(1360px, max(75%, min(100% - 24px, 640px)));
+  margin-inline: auto;
 }

@@ -1,20 +1,37 @@
-import { Eyebrow } from "@/components/ui/Eyebrow"
-import { Heading } from "@/components/ui/Heading"
+import { SiteFooter } from "@/components/SiteFooter"
+import { SiteHeader } from "@/components/SiteHeader"
+import { AboutSection } from "@/components/home/AboutSection"
+import { AccreditationStrip } from "@/components/home/AccreditationStrip"
+import { AdmissionsSection } from "@/components/home/AdmissionsSection"
+import { FaqSection } from "@/components/home/FaqSection"
+import { FinalCtaSection } from "@/components/home/FinalCtaSection"
+import { HeroSection } from "@/components/home/HeroSection"
+import { ModelSection } from "@/components/home/ModelSection"
+import { ProgramsSection } from "@/components/home/ProgramsSection"
 
+/**
+ * Portada del sitio, traducida del prototipo `Visione Sitio Web.dc.html`. La
+ * página se queda como componente de servidor: la interactividad vive en
+ * `SiteHeader`, `HeroSection` y `AboutSection`, que son los únicos islotes de
+ * cliente.
+ */
 export default function Home() {
   return (
-    <main className="flex flex-1 items-center bg-white px-6 py-24 text-ink-700">
-      <div className="mx-auto flex max-w-[1180px] flex-col gap-8">
-        <Eyebrow className="text-amber-400">Visione</Eyebrow>
+    <>
+      <SiteHeader />
 
-        <Heading level={1} className="text-ink-900">
-          Un lugar donde estudiar tiene sentido
-        </Heading>
+      <main className="flex-1 overflow-x-clip">
+        <HeroSection />
+        <AccreditationStrip />
+        <AboutSection />
+        <ProgramsSection />
+        <ModelSection />
+        <AdmissionsSection />
+        <FaqSection />
+        <FinalCtaSection />
+      </main>
 
-        <p className="max-w-[60ch] text-[clamp(17px,1.5vw,21px)]">
-          Prototipo del sitio de Visione.
-        </p>
-      </div>
-    </main>
+      <SiteFooter />
+    </>
   )
 }

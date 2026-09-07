@@ -183,3 +183,41 @@ Heredados de los caveats del propio design system:
 - **Iconos sustituidos.** Lucide vía CDN; si Visione tiene librería propia, se cambia.
 - **Fuentes desde Google Fonts.** Para autohospedar, poner los `.woff2` en
   `assets/fonts/` y cambiar el `@import` de `tokens/fonts.css` por `@font-face`.
+
+---
+
+## 10. Implementación en Next
+
+La portada del prototipo (`Visione Sitio Web.dc.html`) está construida en la app de
+`app/`. La traducción de un sistema a otro es literal salvo en tres puntos:
+
+- **Tokens.** El bundle `_ds/` no se copia. Sus valores viven en el `:root` de
+  `app/globals.css` y el bloque `@theme inline` los convierte en clases de Tailwind
+  (`bg-navy-600`, `text-md`, `rounded-pill`, `shadow-lg`, `tracking-eyebrow`,
+  `ease-standard`). Los estilos inline `var(--*)` del prototipo se sustituyen por esas
+  clases; no quedan colores escritos a mano.
+- **Anchos de caja.** Los contenedores del sistema (720 / 960 / 1180 / 1360px) se
+  llaman `tight`, `narrow`, `content` y `rail`, no `sm`/`md`/`lg`/`xl`: esos nombres ya
+  existen en Tailwind con otros valores. El riel del header, que no cabe en una clase,
+  es la única regla suelta de `globals.css` (`.header-rail`).
+- **Iconos.** Lucide, ahora vía `lucide-react` en lugar del CDN. Desde la v1 la
+  librería ya no incluye marcas registradas, así que Facebook, Instagram y LinkedIn
+  del pie son SVG propios en `components/ui/BrandIcon.tsx`.
+
+Los componentes del bundle tienen su equivalente en `components/ui/`: `Button` (con
+`ButtonLink` para el mismo aspecto sobre un enlace), `IconButtonLink`, `Eyebrow`,
+`Rule`, `Heading`, `Stat`, `Tag`, `Alert` y `Accordion`. Las secciones de la portada
+viven en `components/home/` y el copy compartido —los diez programas, las
+resoluciones y las preguntas frecuentes— en `lib/content.ts`.
+
+**Navegación.** El prototipo enlaza a `Nosotros.dc.html`, `Programas.dc.html`,
+`Admisiones.dc.html` y `Contacto.dc.html`. Esas rutas todavía no existen en la app, así
+que cada enlace cae en el ancla correspondiente de la propia portada (`#nosotros`,
+`#programas`, `#admisiones`, `#contacto`). Por eso los botones con destino son un `<a>`
+y no un `next/link`; cuando se creen las páginas, ahí es donde hay que cambiarlo.
+
+**Animaciones.** Las dos del prototipo se rehicieron con GSAP + ScrollTrigger en vez
+del `requestAnimationFrame` a mano: el vuelo del avión mide el copy ya compuesto y
+traza la ruta (`components/home/HeroSection.tsx`), y el panel de Nosotros entra con
+`power3.out`, que es exactamente el `1 - (1 - p)³` del original
+(`components/home/AboutSection.tsx`).

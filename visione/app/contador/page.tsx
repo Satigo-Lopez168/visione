@@ -21,7 +21,7 @@ export default function ContadorPage() {
       <div className="mx-auto flex max-w-[1180px] flex-col gap-10">
         <header className="flex flex-col gap-3">
           <Eyebrow className="text-amber-400">Demo</Eyebrow>
-          <Heading level={1} className="text-ink-900">
+          <Heading level={1} size="display" className="text-ink-900">
             Contador de clicks
           </Heading>
           <p className="max-w-[60ch] text-[clamp(17px,1.5vw,21px)]">
